@@ -1,13 +1,23 @@
 body
 {
     background-color: whitesmoke;
+    color: purple;
 }
 .card{
-    margin-top: 50%;
+    margin-top: 20%;
 }
 .card-img-top{
     margin-top: 5px;
     margin-left: 100px;
     width: 100px;
 
+}
+.card-title, .card-text{
+    color:purple;
+}
+h2{
+    margin-top: 25px;
+}
+.table{
+    margin: 5px;
 }

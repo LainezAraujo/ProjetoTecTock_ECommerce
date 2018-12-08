@@ -33,7 +33,7 @@ class PearsonController extends Controller
      */
     public function create()
     {
-        //
+        return view('pearson.create');
     }
 
     /**
