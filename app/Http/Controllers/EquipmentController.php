@@ -2,84 +2,69 @@
 
 namespace App\Http\Controllers;
 
-use App\Equipment;
+use App\Domain\Repositories\EquipmentRepository;
+use App\Domain\Services\EquipmentService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class EquipmentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    private $equipmentService;
+
+    public function __construct()
+    {
+        $this->equipmentService = new EquipmentService(new EquipmentRepository());
+        $this->middleware('auth');
+    }
+
     public function index()
     {
-        //
+        $equipment = $this->equipmentService->findBy([]);
+
+        return view('equipment.index')->with('equipment', $equipment);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        return view('equipment.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        if ($equipment = $this->equipmentService->create($request->all())) {
+            $msg       = sprintf('%s foi cadastrado com sucesso', $equipment->name);
+            $equipment = $this->equipmentService->findBy([]);
+
+            return view('equipment.index')->with(['message' => $msg, 'equipment' => $equipment]);
+        }
+
+        return view('equipment.create')->with('errorsMsg',
+            'Falha as cadastrar equipamento! Tente novamente mais tarde.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Equipment  $equipment
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Equipment $equipment)
+    public function edit($id)
     {
-        //
+        $equipment = $this->equipmentService->findOneById($id);
+
+        return View::make('equipment.edit')->with('equipment', $equipment);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Equipment  $equipment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Equipment $equipment)
+    public function update(Request $request, $id)
     {
-        //
+        if ($person = $this->equipmentService->update($request->all(), $id)) {
+            $msg       = sprintf('%s foi editado com sucesso', $person->name);
+            $equipment = $this->equipmentService->findBy([]);
+
+            return view('equipment.index')->with(['message' => $msg, 'equipment' => $equipment]);
+        }
+
+        return view('equipment.create')->with('errorsMsg', 'Falha as cadastrar equipamento! Tente novamente mais tarde.');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Equipment  $equipment
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Equipment $equipment)
+    public function destroy($id)
     {
-        //
-    }
+        $this->equipmentService->delete($id);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Equipment  $equipment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Equipment $equipment)
-    {
-        //
+        return redirect('equipamentos');
     }
 }

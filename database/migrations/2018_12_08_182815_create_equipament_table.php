@@ -18,10 +18,10 @@ class CreateEquipamentTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('service_tag');
-            $table->unsignedInteger('actual_user');
-            $table->unsignedInteger('old_user');
-            $table->foreign('actual_user')->references('id')->on('users');
-            $table->foreign('old_user')->references('id')->on('users');
+            $table->unsignedInteger('actual_user')->nullable();
+            $table->unsignedInteger('old_user')->nullable();
+            $table->foreign('actual_user')->references('id')->on('persons');
+            $table->foreign('old_user')->references('id')->on('persons');
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ class CreateEquipamentTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('equipament');
+        Schema::dropIfExists('equipment');
     }
 }

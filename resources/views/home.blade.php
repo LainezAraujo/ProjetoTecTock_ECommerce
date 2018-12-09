@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Equipamento</h5>
                     <p class="card-text">Listagem de equipamentos.</p>
-                    <a href="#" class="btn btn-secondary">Entrar</a>
+                    <a href="{{ url('equipamentos') }}" class="btn btn-secondary">Entrar</a>
                 </div>
             </div>
         </div>

@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Vanir
- * Date: 08/12/2018
- * Time: 20:14
- */
 
 namespace App\Domain\Services;
-
 
 use App\Domain\Models\Person;
 use App\Domain\Repositories\PersonRepository;
