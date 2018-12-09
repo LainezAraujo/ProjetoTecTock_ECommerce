@@ -51,4 +51,9 @@ class EquipmentService
 
         return $this->equipmentRepository->update($equipment);
     }
+
+    public function updateOnlyUsers(Equipment $equipment)
+    {
+        return $this->equipmentRepository->update($equipment);
+    }
 }

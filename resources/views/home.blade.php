@@ -33,7 +33,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Serviços</h5>
                     <p class="card-text lead">Listagem de Serviços.</p>
-                    <a href="#" class="btn btn-secondary">Entrar</a>
+                    <a href="{{ url('servicos') }}" class="btn btn-secondary">Entrar</a>
                 </div>
             </div>
         </div>

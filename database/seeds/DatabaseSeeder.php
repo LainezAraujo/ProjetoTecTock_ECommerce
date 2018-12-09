@@ -12,19 +12,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-       DB::table('service_types')->insert([
-          'id' => 1,
-          'name'=>'Manutenção'
-       ]);
-
         DB::table('service_types')->insert([
-            'id' => 2,
-            'name'=>'Devolução'
+            'id'   => 1,
+            'name' => 'Novo'
         ]);
 
         DB::table('service_types')->insert([
-            'id' => 3,
-            'name'=>'Troca'
+            'id'   => 2,
+            'name' => 'Devolução'
         ]);
     }
 }

@@ -9,6 +9,8 @@ use Illuminate\Validation\Rule;
  * @property mixed description
  * @property mixed service_tag
  * @property mixed actual_user
+ * @property mixed old_user
+ * @property mixed id
  */
 class Equipment extends ModelAbstract
 {
