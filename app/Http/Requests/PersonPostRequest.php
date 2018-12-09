@@ -2,12 +2,13 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 
 class PersonPostRequest extends FormRequest
 {
-    public function autorize()
+    public function authorize()
     {
         return true;
     }
@@ -19,5 +20,10 @@ class PersonPostRequest extends FormRequest
             'cpf' => ['required'],
             'cargo' => ['required'],
         ];
+    }
+
+    protected function failedValidation(Validator $validator)
+    {
+        return view('person.create')->withErrors($validator);
     }
 }

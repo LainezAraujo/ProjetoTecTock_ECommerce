@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Domain\Repositories\PersonRepository;
 use App\Domain\Services\PersonService;
-use App\Http\Requests\PersonPostRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 
 class PersonController extends Controller
 {
@@ -16,84 +16,55 @@ class PersonController extends Controller
         $this->personService = new PersonService(new PersonRepository());
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        $filter = [];
         $persons = $this->personService->findBy([]);
 
         return view('person.index')->with('persons', $persons);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('person.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(PersonPostRequest $request)
+    public function store(Request $request)
     {
-        $this->personService->create($request->all());
+        if ($person = $this->personService->create($request->all())) {
+            $msg     = sprintf('%s foi cadastrado com sucesso', $person->name);
+            $persons = $this->personService->findBy([]);
 
-        return view('person.create');
+            return view('person.index')->with(['message' => $msg, 'persons' => $persons]);
+        }
+
+        return view('person.create')->with('errorsMsg', 'Falha as cadastrar pessoa! Tente novamente mais tarde.');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $person = $this->personService->findOneById($id);
+
+        return View::make('person.edit')
+            ->with('person', $person);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        if ($person = $this->personService->update($request->all(), $id)) {
+            $msg     = sprintf('%s foi editado com sucesso', $person->name);
+            $persons = $this->personService->findBy([]);
+
+            return view('person.index')->with(['message' => $msg, 'persons' => $persons]);
+        }
+
+        return view('person.create')->with('errorsMsg', 'Falha as cadastrar pessoa! Tente novamente mais tarde.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $this->personService->delete($id);
+
+        return redirect('pessoas');
     }
 }

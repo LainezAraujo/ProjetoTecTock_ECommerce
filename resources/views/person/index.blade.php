@@ -6,7 +6,14 @@
 @section('content')
     <h2>Lista de Pessoas</h2>
     <a href="{{ url('pessoas/novo') }}" class="btn  btn-secondary">Adicionar pessoas</a>
-
+    @if(isset($message))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{$message}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <table class="table table-striped table-dark">
         <thead>
         <tr>
@@ -27,8 +34,8 @@
                 <td>{{$person->cargo}}</td>
                 <td>{{$person->created_at}}</td>
                 <td>
-                    <button class="btn btn-secondary"><i class="fa fa-pencil-square"></i></button>
-                    <button class="btn btn-secondary"><i class="fa fa-trash"></i></button>
+                    <a href="{{ action('PersonController@edit',$person->id) }}" class="btn btn-secondary "><i class="fa fa-pencil-square"></i></a>
+                    <a href="{{ action('PersonController@destroy',$person->id) }}" class="btn btn-secondary "><i class="fa fa-trash"></i></a>
                 </td>
             </tr>
         @endforeach
