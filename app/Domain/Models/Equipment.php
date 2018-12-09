@@ -8,6 +8,7 @@ use Illuminate\Validation\Rule;
  * @property mixed name
  * @property mixed description
  * @property mixed service_tag
+ * @property mixed actual_user
  */
 class Equipment extends ModelAbstract
 {
@@ -28,11 +29,11 @@ class Equipment extends ModelAbstract
 
     public function actualUser()
     {
-        return $this->belongsTo('persons', 'actual_user', 'id');
+        return $this->belongsTo(Person::class, 'actual_user', 'id');
     }
 
     public function oldUser()
     {
-        return $this->belongsTo('persons', 'old_user', 'id');
+        return $this->belongsTo(Person::class, 'old_user', 'id');
     }
 }

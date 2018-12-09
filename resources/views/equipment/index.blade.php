@@ -14,6 +14,14 @@
             </button>
         </div>
     @endif
+    @if(isset($errorsMsg))
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{$errorsMsg}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    @endif
     <table class="table table-striped table-dark">
         <thead>
         <tr>
@@ -33,7 +41,7 @@
                 <td>{{$equip->name}}</td>
                 <td>{{$equip->description}}</td>
                 <td>{{$equip->service_tag}}</td>
-                <td>{{$equip->actual_user}}</td>
+                <td>{{$equip->actualUser->name}}</td>
                 <td>{{$equip->created_at}}</td>
                 <td>
                     <a href="{{ action('EquipmentController@edit',$equip->id) }}" class="btn btn-secondary "><i class="fa fa-pencil-square"></i></a>

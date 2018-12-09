@@ -63,6 +63,12 @@ class EquipmentController extends Controller
 
     public function destroy($id)
     {
+        $equip = $this->equipmentService->findOneById($id);
+        if (!is_null($equip->actual_user)) {
+            $equipment = $this->equipmentService->findBy([]);
+            $msg = sprintf('O equipamento %s está em uso!', $equip->name);
+            return view('equipment.index')->with(['errorsMsg' => $msg, 'equipment' => $equipment]);
+        }
         $this->equipmentService->delete($id);
 
         return redirect('equipamentos');
