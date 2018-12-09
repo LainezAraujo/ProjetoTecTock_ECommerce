@@ -28,3 +28,4 @@ Route::get('/equipamentos/editar/{id}', 'EquipmentController@edit');
 Route::get('/servicos/novo','ServiceController@create');
 Route::post('/servicos/novo','ServiceController@store');
 Route::get('/servicos', 'ServiceController@index')->name('services-list');
+Route::get('/servicos/deletar/{id}', 'ServiceController@destroy');

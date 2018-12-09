@@ -10,6 +10,7 @@ use App\Domain\Services\EquipmentService;
 use App\Domain\Services\PersonService;
 use App\Domain\Services\ServicoService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Fluent;
 
 class ServiceController extends Controller
@@ -83,5 +84,12 @@ class ServiceController extends Controller
         }
 
         return view('service.create')->with('errorsMsg', 'Falha as cadastrar Serviço! Tente novamente mais tarde.');
+    }
+
+    public function destroy($id)
+    {
+        $this->servicoService->delete($id);
+
+        return redirect('servicos');
     }
 }
