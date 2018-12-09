@@ -41,7 +41,7 @@
                 <td>{{$equip->name}}</td>
                 <td>{{$equip->description}}</td>
                 <td>{{$equip->service_tag}}</td>
-                <td>{{$equip->actualUser->name}}</td>
+                <td>{{ isset($equip->actualUser->name) ? $equip->actualUser->name : ''}}</td>
                 <td>{{$equip->created_at}}</td>
                 <td>
                     <a href="{{ action('EquipmentController@edit',$equip->id) }}" class="btn btn-secondary "><i class="fa fa-pencil-square"></i></a>
