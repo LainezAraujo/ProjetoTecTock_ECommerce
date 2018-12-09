@@ -5,7 +5,8 @@
 @endsection
 @section('content')
     <h2>Cadastrar Pessoas</h2>
-    <form>
+    <form method="POST" action="{{ action('PersonController@store') }}">
+        <input name="_token" type="hidden" value="{{ csrf_token() }}"/>
         <div class="form-group">
             <label for="nameinput">Nome</label>
             <input  class="form-control" id="nameinput" placeholder="Nome">

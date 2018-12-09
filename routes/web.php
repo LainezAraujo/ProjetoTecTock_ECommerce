@@ -18,5 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/pessoas/novo','PearsonController@create');
-Route::get('/pessoas', 'PearsonController@index');
+Route::get('/pessoas/novo','PersonController@create');
+Route::post('/pessoas/novo','PersonController@store');
+Route::get('/pessoas', 'PersonController@index');

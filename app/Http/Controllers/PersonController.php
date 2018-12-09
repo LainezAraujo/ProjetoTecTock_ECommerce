@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Pearson;
+use App\Domain\Repositories\PersonRepository;
+use App\Domain\Services\PersonService;
+use App\Http\Requests\PersonPostRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-
-class PearsonController extends Controller
+class PersonController extends Controller
 {
+    private $personService;
+
     public function __construct()
     {
+        $this->personService = new PersonService(new PersonRepository());
         $this->middleware('auth');
     }
     /**
@@ -21,9 +24,9 @@ class PearsonController extends Controller
     public function index()
     {
         $filter = [];
-        $persons = Pearson::findBy();
+        $persons = $this->personService->findBy([]);
 
-        return view('pearson.index')->with('persons', $persons);
+        return view('person.index')->with('persons', $persons);
     }
 
     /**
@@ -33,7 +36,7 @@ class PearsonController extends Controller
      */
     public function create()
     {
-        return view('pearson.create');
+        return view('person.create');
     }
 
     /**
@@ -42,9 +45,11 @@ class PearsonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PersonPostRequest $request)
     {
-        //
+        $this->personService->create($request->all());
+
+        return view('person.create');
     }
 
     /**
