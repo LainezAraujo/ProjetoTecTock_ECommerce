@@ -31,7 +31,7 @@
             <tr>
                 <th scope="row">{{$equip->id}}</th>
                 <td>{{$equip->name}}</td>
-                <td>{{$equip->descricao}}</td>
+                <td>{{$equip->description}}</td>
                 <td>{{$equip->service_tag}}</td>
                 <td>{{$equip->actual_user}}</td>
                 <td>{{$equip->created_at}}</td>
