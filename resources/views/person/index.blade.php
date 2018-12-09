@@ -4,7 +4,7 @@
     TecToc
 @endsection
 @section('content')
-    <h2>Lista de Pessoas</h2>
+    <h2 class="display-2">Lista de Pessoas</h2>
     <a href="{{ url('pessoas/novo') }}" class="btn  btn-secondary">Adicionar pessoas</a>
     @if(isset($message))
         <div class="alert alert-success alert-dismissible fade show" role="alert">

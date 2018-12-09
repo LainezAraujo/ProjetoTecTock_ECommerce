@@ -4,7 +4,7 @@
     TecToc
 @endsection
 @section('content')
-    <h2>Cadastrar Equipamentos</h2>
+    <h2 class="display-3">Cadastrar Equipamentos</h2>
     @if(isset($errorsMsg))
         <div class="alert alert-danger" role="alert">
             {{ $errorsMsg }}
@@ -25,7 +25,7 @@
             <input class="form-control" id="servicetaginput" placeholder="Etiqueta de Serviço: AFADF-312" name="service_tag" required>
         </div>
 
-        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="submit" class="btn btn-secondary">Salvar</button>
     </form>
 
 

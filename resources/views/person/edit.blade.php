@@ -4,7 +4,7 @@
     TecToc
 @endsection
 @section('content')
-    <h2>Editar Pessoa</h2>
+    <h2 class="display-3">Editar Pessoa</h2>
     @if(isset($errorsMsg))
         <div class="alert alert-danger" role="alert">
             {{ $errorsMsg }}
@@ -25,6 +25,6 @@
             <label for="cargoinput">Cargo</label>
             <input class="form-control" id="cargoinput" placeholder="Cargo" name="cargo"  value="{{ $person->cargo }}" required>
         </div>
-        <button type="submit" class="btn btn-primary">Salvar</button>
+        <button type="submit" class="btn btn-secondary">Salvar</button>
     </form>
 @endsection

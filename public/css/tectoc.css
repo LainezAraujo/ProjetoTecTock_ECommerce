@@ -1,10 +1,11 @@
 body
 {
-    background-color: whitesmoke;
-    color: purple;
+    background-color: #a4aaae;
+
 }
 .card{
-    margin-top: 20%;
+    margin-top: 10%;
+
 }
 .card-img-top{
     margin-top: 5px;
@@ -12,11 +13,12 @@ body
     width: 100px;
 
 }
-.card-title, .card-text{
-    color:purple;
+h1,h2,label{
+    margin-top: 30px;
+    color: whitesmoke;
 }
-h2{
-    margin-top: 25px;
+form{
+    font-size: 1rem;
 }
 .table{
     margin: 5px;

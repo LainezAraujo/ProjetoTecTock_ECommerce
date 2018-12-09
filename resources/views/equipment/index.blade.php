@@ -4,7 +4,7 @@
     TecToc
 @endsection
 @section('content')
-    <h2>Lista de Equipamentos</h2>
+    <h2 class="display-3">Lista de Equipamentos</h2>
     <a href="{{ url('equipamentos/novo') }}" class="btn  btn-secondary">Adicionar equipamentos</a>
     @if(isset($message))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
