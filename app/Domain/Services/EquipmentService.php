@@ -25,6 +25,11 @@ class EquipmentService
         return $this->equipmentRepository->findAll($filter);
     }
 
+    public function findAllBy(array $filter)
+    {
+        return $this->equipmentRepository->findAllBy($filter);
+    }
+
     public function create(array $data): Equipment
     {
         return $this->equipmentRepository->create($data);

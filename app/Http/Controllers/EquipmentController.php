@@ -6,6 +6,7 @@ use App\Domain\Repositories\EquipmentRepository;
 use App\Domain\Services\EquipmentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Fluent;
 
 class EquipmentController extends Controller
 {
@@ -17,9 +18,9 @@ class EquipmentController extends Controller
         $this->middleware('auth');
     }
 
-    public function index()
+    public function index(Request $request)
     {
-        $equipment = $this->equipmentService->findBy([]);
+        $equipment = $this->equipmentService->findAllBy($request->all());
 
         return view('equipment.index')->with('equipment', $equipment);
     }

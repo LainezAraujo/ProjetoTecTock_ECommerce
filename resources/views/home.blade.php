@@ -23,7 +23,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Equipamento em Uso</h5>
                     <p class="card-text lead">Listagem de Equipamentos.</p>
-                    <a href="{{ url('equipamentos') }}" class="btn btn-secondary btn-md">Entrar</a>
+                    <a href="{{ url('equipamentos?assigned=1') }}" class="btn btn-secondary btn-md">Entrar</a>
                 </div>
             </div>
         </div>
@@ -34,7 +34,7 @@
                 <div class="card-body">
                     <h5 class="card-title">Equipamento em Estoque</h5>
                     <p class="card-text lead">Listagem de Estoque.</p>
-                    <a href="{{ url('equipamentos') }}" class="btn btn-secondary btn-md">Entrar</a>
+                    <a href="{{ url('equipamentos?not_assigned=1') }}" class="btn btn-secondary btn-md">Entrar</a>
                 </div>
             </div>
         </div>
