@@ -14,8 +14,8 @@
             </button>
         </div>
     @endif
-    <table class="table table-striped table-dark">
-        <thead>
+    <table class="table table-striped">
+        <thead class="thead-dark">
         <tr>
             <th scope="col">#</th>
             <th scope="col">Nome</th>
@@ -28,7 +28,7 @@
         <tbody>
         @foreach($persons as $person)
             <tr>
-                <th scope="row">{{$person->id}}</th>
+                <th scope="row ">{{$person->id}}</th>
                 <td>{{$person->name}}</td>
                 <td>{{$person->cpf}}</td>
                 <td>{{$person->cargo}}</td>

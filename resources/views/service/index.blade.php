@@ -22,8 +22,8 @@
             </button>
         </div>
     @endif
-    <table class="table table-striped table-dark">
-        <thead>
+    <table class="table ">
+        <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Descrição</th>
