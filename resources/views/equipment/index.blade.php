@@ -29,7 +29,7 @@
             <th scope="col">Nome</th>
             <th scope="col">Descrição</th>
             <th scope="col">Service Tag</th>
-            <th scope="col">Atual Proprietário</th>
+            <th scope="col">Proprietário</th>
             <th scope="col">Cadastrado em</th>
             <th scope="col">Ações</th>
         </tr>
@@ -41,7 +41,13 @@
                 <td>{{$equip->name}}</td>
                 <td>{{$equip->description}}</td>
                 <td>{{$equip->service_tag}}</td>
-                <td>{{ isset($equip->actualUser->name) ? $equip->actualUser->name : ''}}</td>
+                @if (isset($equip->actualUser->name) && !empty($equip->actualUser->name)))
+                    <td>{{  $equip->actualUser->name }}</td>
+                @elseif (isset($equip->oldUser->name) && !empty($equip->oldUser->name))
+                    <td>{{  $equip->oldUser->name }}</td>
+                @else
+                    <td></td>
+                @endif
                 <td>{{$equip->created_at}}</td>
                 <td>
                     <a href="{{ action('EquipmentController@edit',$equip->id) }}" class="btn btn-secondary "><i class="fa fa-pencil-square"></i></a>
